@@ -1,0 +1,30 @@
+int singleNonDuplicate(int* nums, int numsSize)
+{
+    int left = 0;
+    int right = numsSize - 1;
+
+    while (left < right)
+    {
+        int mid = left + (right - left) / 2;
+
+        // Make mid even
+        if (mid % 2 == 1)
+        {
+            mid--;
+        }
+
+        // Check whether the pair is correct
+        if (nums[mid] == nums[mid + 1])
+        {
+            // Single element is on the right side
+            left = mid + 2;
+        }
+        else
+        {
+            // Single element is on the left side or at mid
+            right = mid;
+        }
+    }
+
+    return nums[left];
+}
